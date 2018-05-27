@@ -1,4 +1,3 @@
-//
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,6 +6,7 @@
 char **allocate (int quantity);
 void freeAllocate(int quantity, char ***stringArray);
 void showArray(int quantity, char **stringArray);
+void fillArray(int quantity, char **stringArray);
 
 int main(int argc, char *argv[]) {
 	
@@ -16,6 +16,9 @@ int main(int argc, char *argv[]) {
 	scanf("%d", &quantity);
 	
 	char **stringArray = allocate(quantity);
+	fillArray(quantity, stringArray);
+	showArray(quantity, stringArray);
+	freeAllocate(quantity, &stringArray);
 	
 	return 0;
 }
@@ -38,17 +41,15 @@ char **allocate (int quantity){
 void showArray(int quantity, char **stringArray){
 	
 	int quantityCounter;
-	int lengthCounter;
 	
 	for(quantityCounter = 0; quantityCounter< quantity; quantityCounter++){
 		
-		printf("\n");
+		printf("Napis nr %d: ", quantityCounter + 1);
+		printf("%s\n",  stringArray[quantityCounter]);
 		
-		for(lengthCounter = 0; lengthCounter< stringLength; lengthCounter++){
-		
-			printf("%s",  *(*(stringArray+quantityCounter)+lengthCounter));
-		}	
 	}
+	
+	return;
 	
 }
 
@@ -58,12 +59,25 @@ void freeAllocate(int quantity, char ***stringArray){
 	
 	for(quantityCounter = 0; quantityCounter< quantity; quantityCounter++){
 		
-		free(*((*stringArray)+quantityCounter));
+				free(*((*stringArray)+quantityCounter));
 	}
 	
 	free(*stringArray);
 	*stringArray = NULL;
 	
+	return;
+}
+
+void fillArray(int quantity, char **stringArray){
+	
+	int quantityCounter;
+
+	for(quantityCounter = 0; quantityCounter< quantity; quantityCounter++){
+			
+			printf("Podaj %d napis: ", quantityCounter+1);
+			scanf("%s", stringArray[quantityCounter]);
+	}
+
 	return;
 }
 

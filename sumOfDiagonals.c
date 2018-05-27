@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	showArray(height, width, array);
 
 	printf("Suma diagonalnych przecinajacych sie w punkcie A wynosi: %d",  	countDiagonalSum(height, width, Ax, Ay, array));
-	freeArray(width, &array);
+	freeArray(height, &array);
 	
 	return 0;
 }
@@ -63,7 +63,7 @@ void freeArray(int height, int ***array){
 	
 	int heightCounter;
 	
-	for(heightCounter = 0; heightCounter< width; heightCounter++){
+	for(heightCounter = 0; heightCounter< height; heightCounter++){
 		
 		free(*((*array)+heightCounter));
 	}
