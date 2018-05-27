@@ -8,7 +8,7 @@ int ** allocate(int height, int width);
 void fillArray(int height, int width, int **array);
 int countDiagonalSum(int height, int width, int Ax, int Ay, int **array);
 void showArray(int height, int width, int **array);
-void freeArray(int width, int ***array);
+void freeArray(int height, int ***array);
 
 
 
@@ -59,13 +59,13 @@ int ** allocate(int height, int width){
 	return array;
 }
 
-void freeArray(int width, int ***array){
+void freeArray(int height, int ***array){
 	
-	int widthCounter;
+	int heightCounter;
 	
-	for(widthCounter = 0; widthCounter< width; widthCounter++){
+	for(heightCounter = 0; heightCounter< width; heightCounter++){
 		
-		free(*((*array)+widthCounter));
+		free(*((*array)+heightCounter));
 	}
 	
 	free(*array);
